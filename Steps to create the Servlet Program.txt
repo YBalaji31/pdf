@@ -1,0 +1,17 @@
+Follow the steps to create the Servlet Program
+
+1. Create a database with table "register".
+2. Create a web directory
+      Tomcat -> webapps -> Register -> WEB-INF     
+                                        -> classes -> java servlet .class file
+                                        -> lib
+                                        -> web.xml
+                                    -> Regindex.html
+
+3. Set CLASSPATH to databasedriver jar file
+
+4. Set CLASSPATH to servlet-api jar file
+
+5. Open a web browser and add the url like localhost:8080/Register/Regindex.html -> opens your web form for getting user input and submit the form.
+
+6. Check your database table.

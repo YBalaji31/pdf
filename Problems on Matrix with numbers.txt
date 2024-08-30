@@ -1,0 +1,1062 @@
+1. Given an m x n matrix of distinct numbers, return all lucky numbers in the matrix in any order.
+
+A lucky number is an element of the matrix such that it is the minimum element in its row and maximum in its column.
+
+Example 1:
+
+Input: matrix = [[3,7,8],[9,11,13],[15,16,17]]
+Output: [15]
+Explanation: 15 is the only lucky number since it is the minimum in its row and the maximum in its column.
+Example 2:
+
+Input: matrix = [[1,10,4,2],[9,3,8,7],[15,16,17,12]]
+Output: [12]
+Explanation: 12 is the only lucky number since it is the minimum in its row and the maximum in its column.
+Example 3:
+
+Input: matrix = [[7,8],[1,2]]
+Output: [7]
+Explanation: 7 is the only lucky number since it is the minimum in its row and the maximum in its column.
+ 
+
+Constraints:
+
+m == mat.length
+n == mat[i].length
+1 <= n, m <= 50
+1 <= matrix[i][j] <= 10^5.
+All elements in the matrix are distinct.
+
+==================================================================================
+2. Given an m x n integers matrix, return the length of the longest increasing path in matrix.
+
+From each cell, you can either move in four directions: left, right, up, or down. You may not move diagonally or move outside the boundary (i.e., wrap-around is not allowed).
+
+Example 1:
+
+ +---+---+---+
+ | 9 | 9 | 4 |
+ +---+---+---+
+ | 6 | 6 | 8 |
+ +---+---+---+
+ | 2 | 1 | 1 |
+ +---+---+---+
+
+Input: matrix = [[9,9,4],[6,6,8],[2,1,1]]
+Output: 4
+Explanation: The longest increasing path is [1, 2, 6, 9].
+
+
+Example 2:
+
+ +---+---+---+
+ | 3 | 4 | 5 |
+ +---+---+---+
+ | 3 | 2 | 6 |
+ +---+---+---+
+ | 2 | 2 | 1 |
+ +---+---+---+
+
+Input: matrix = [[3,4,5],[3,2,6],[2,2,1]]
+Output: 4
+Explanation: The longest increasing path is [3, 4, 5, 6]. Moving diagonally is not allowed.
+Example 3:
+
+Input: matrix = [[1]]
+Output: 1
+
+Constraints:
+
+m == matrix.length
+n == matrix[i].length
+1 <= m, n <= 200
+0 <= matrix[i][j] <= 2^31 - 1
+
+https://leetcode.com/problems/longest-increasing-path-in-a-matrix/
+==================================================================================3. You are given two arrays rowSum and colSum of non-negative integers where rowSum[i] is the sum of the elements in the ith row and colSum[j] is the sum of the elements of the jth column of a 2D matrix. In other words, you do not know the elements of the matrix, but you do know the sums of each row and column.
+
+Find any matrix of non-negative integers of size rowSum.length x colSum.length that satisfies the rowSum and colSum requirements.
+
+Return a 2D array representing any matrix that fulfills the requirements. It's guaranteed that at least one matrix that fulfills the requirements exists.
+
+Example 1:
+
+Input: rowSum = [3,8], colSum = [4,7]
+Output: [[3,0],
+         [1,7]]
+Explanation: 
+0th row: 3 + 0 = 3 == rowSum[0]
+1st row: 1 + 7 = 8 == rowSum[1]
+0th column: 3 + 1 = 4 == colSum[0]
+1st column: 0 + 7 = 7 == colSum[1]
+The row and column sums match, and all matrix elements are non-negative.
+Another possible matrix is: [[1,2],
+                             [3,5]]
+Example 2:
+
+Input: rowSum = [5,7,10], colSum = [8,6,8]
+Output: [[0,5,0],
+         [6,1,0],
+         [2,0,8]]
+ 
+
+Constraints:
+
+1 <= rowSum.length, colSum.length <= 500
+0 <= rowSum[i], colSum[i] <= 108
+sum(rowSum) == sum(colSum)
+==================================================================================
+4. There is an m x n matrix that is initialized to all 0's. There is also a 2D array indices where each indices[i] = [ri, ci] represents a 0-indexed location to perform some increment operations on the matrix.
+
+For each location indices[i], do both of the following:
+
+Increment all the cells on row ri.
+Increment all the cells on column ci.
+Given m, n, and indices, return the number of odd-valued cells in the matrix after applying the increment to all locations in indices.
+
+Example 1:
+
+ +---+---+---+     +---+---+---+     +---+---+---+
+ | 0 | 0 | 0 |     | 1 | 2 | 1 |     | 1 | 3 | 1 |
+ +---+---+---+ --> +---+---+---+ --> +---+---+---+
+ | 0 | 0 | 0 |     | 0 | 1 | 0 |     | 1 | 3 | 1 | 
+ +---+---+---+     +---+---+---+     +---+---+---+
+
+Input: m = 2, n = 3, indices = [[0,1],[1,1]]
+Output: 6
+Explanation: Initial matrix = [[0,0,0],[0,0,0]].
+After applying first increment it becomes [[1,2,1],[0,1,0]].
+The final matrix is [[1,3,1],[1,3,1]], which contains 6 odd numbers.
+
+Example 2:
+
+ +---+---+       +---+---+     +---+---+
+ | 0 | 0 |       | 0 | 1 |     | 2 | 2 |
+ +---+---+  -->  +---+---+ --> +---+---+
+ | 0 | 0 |       | 1 | 2 |     | 2 | 2 |
+ +---+---+       +---+---+     +---+---+
+
+Input: m = 2, n = 2, indices = [[1,1],[0,0]]
+Output: 0
+Explanation: Final matrix = [[2,2],[2,2]]. There are no odd numbers in the final matrix.
+ 
+Constraints:
+
+1 <= m, n <= 50
+1 <= indices.length <= 100
+0 <= ri < m
+0 <= ci < n
+
+Follow up: Could you solve this in O(n + m + indices.length) time with only O(n + m) extra space?
+
+https://leetcode.com/problems/cells-with-odd-values-in-a-matrix/
+==================================================================================
+5. You are given a positive integer k. You are also given:
+
+a 2D integer array rowConditions of size n where rowConditions[i] = [abovei, belowi], and
+a 2D integer array colConditions of size m where colConditions[i] = [lefti, righti].
+The two arrays contain integers from 1 to k.
+
+You have to build a k x k matrix that contains each of the numbers from 1 to k exactly once. The remaining cells should have the value 0.
+
+The matrix should also satisfy the following conditions:
+
+The number abovei should appear in a row that is strictly above the row at which the number belowi appears for all i from 0 to n - 1.
+The number lefti should appear in a column that is strictly left of the column at which the number righti appears for all i from 0 to m - 1.
+Return any matrix that satisfies the conditions. If no answer exists, return an empty matrix.
+
+Example 1:
+
+ +---+---+---+
+ | 3 | 0 | 0 |
+ +---+---+---+
+ | 0 | 0 | 1 |
+ +---+---+---+
+ | 0 | 2 | 0 |
+ +---+---+---+
+
+Input: k = 3, rowConditions = [[1,2],[3,2]], colConditions = [[2,1],[3,2]]
+Output: [[3,0,0],[0,0,1],[0,2,0]]
+Explanation: The diagram above shows a valid example of a matrix that satisfies all the conditions.
+The row conditions are the following:
+- Number 1 is in row 1, and number 2 is in row 2, so 1 is above 2 in the matrix.
+- Number 3 is in row 0, and number 2 is in row 2, so 3 is above 2 in the matrix.
+The column conditions are the following:
+- Number 2 is in column 1, and number 1 is in column 2, so 2 is left of 1 in the matrix.
+- Number 3 is in column 0, and number 2 is in column 1, so 3 is left of 2 in the matrix.
+Note that there may be multiple correct answers.
+
+Example 2:
+
+Input: k = 3, rowConditions = [[1,2],[2,3],[3,1],[2,3]], colConditions = [[2,1]]
+Output: []
+Explanation: From the first two conditions, 3 has to be below 1 but the third conditions needs 3 to be above 1 to be satisfied.
+No matrix can satisfy all the conditions, so we return the empty matrix.
+
+Constraints:
+
+2 <= k <= 400
+1 <= rowConditions.length, colConditions.length <= 10^4
+rowConditions[i].length == colConditions[i].length == 2
+1 <= abovei, belowi, lefti, righti <= k
+abovei != belowi
+lefti != righti
+
+https://leetcode.com/problems/build-a-matrix-with-conditions/
+==================================================================================
+6. Set Matrix Zeroes
+
+Given an m x n integer matrix matrix, if an element is 0, set its entire row and column to 0's.
+
+You must do it in place.
+
+Example 1:
+
+ +---+---+---+     +---+---+---+
+ | 1 | 1 | 1 |     | 1 | 0 | 1 |    
+ +---+---+---+     +---+---+---+
+ | 1 | 0 | 1 | --> | 0 | 0 | 0 |  
+ +---+---+---+     +---+---+---+
+ | 1 | 1 | 1 |     | 1 | 0 | 1 |
+ +---+---+---+     +---+---+---+
+
+Input: matrix = [[1,1,1],[1,0,1],[1,1,1]]
+Output: [[1,0,1],[0,0,0],[1,0,1]]
+
+Example 2:
+
+ +---+---+---+---+     +---+---+---+---+
+ | 0 | 1 | 2 | 0 |     | 0 | 0 | 0 | 0 |    
+ +---+---+---+---+     +---+---+---+---+  
+ | 3 | 4 | 5 | 2 | --> | 0 | 4 | 5 | 0 |
+ +---+---+---+---+     +---+---+---+---+ 
+ | 1 | 3 | 1 | 5 |     | 0 | 3 | 1 | 0 |
+ +---+---+---+---+     +---+---+---+---+ 
+
+Input: matrix = [[0,1,2,0],[3,4,5,2],[1,3,1,5]]
+Output: [[0,0,0,0],[0,4,5,0],[0,3,1,0]]
+
+Constraints:
+
+m == matrix.length
+n == matrix[0].length
+1 <= m, n <= 200
+-2^31 <= matrix[i][j] <= 2^31 - 1
+
+https://leetcode.com/problems/set-matrix-zeroes/
+==================================================================================
+7. Count Square Submatrices with All Ones
+
+Given a m * n matrix of ones and zeros, return how many square submatrices have all ones.
+
+Example 1:
+
+Input: matrix =
+[
+  [0,1,1,1],
+  [1,1,1,1],
+  [0,1,1,1]
+]
+Output: 15
+Explanation: 
+There are 10 squares of side 1.
+There are 4 squares of side 2.
+There is  1 square of side 3.
+Total number of squares = 10 + 4 + 1 = 15.
+Example 2:
+
+Input: matrix = 
+[
+  [1,0,1],
+  [1,1,0],
+  [1,1,0]
+]
+Output: 7
+Explanation: 
+There are 6 squares of side 1.  
+There is 1 square of side 2. 
+Total number of squares = 6 + 1 = 7.
+
+Constraints:
+
+1 <= arr.length <= 300
+1 <= arr[0].length <= 300
+0 <= arr[i][j] <= 1
+
+https://leetcode.com/problems/count-square-submatrices-with-all-ones/
+==================================================================================
+8. Number of Submatrices That Sum to Target
+
+Given a matrix and a target, return the number of non-empty submatrices that sum to target.
+
+A submatrix x1, y1, x2, y2 is the set of all cells matrix[x][y] with x1 <= x <= x2 and y1 <= y <= y2.
+
+Two submatrices (x1, y1, x2, y2) and (x1', y1', x2', y2') are different if they have some coordinate that is different: for example, if x1 != x1'.
+
+Example 1:
+
+  [[0,1,0],
+   [1,1,1],
+   [0,1,0]]
+
+Input: matrix = [[0,1,0],[1,1,1],[0,1,0]], target = 0
+Output: 4
+Explanation: The four 1x1 submatrices that only contain 0.
+
+Example 2:
+
+Input: matrix = [[1,-1],[-1,1]], target = 0
+Output: 5
+Explanation: The two 1x2 submatrices, plus the two 2x1 submatrices, plus the 2x2 submatrix.
+
+Example 3:
+
+Input: matrix = [[904]], target = 0
+Output: 0
+ 
+Constraints:
+
+1 <= matrix.length <= 100
+1 <= matrix[0].length <= 100
+-1000 <= matrix[i] <= 1000
+-10^8 <= target <= 10^8
+
+https://leetcode.com/problems/number-of-submatrices-that-sum-to-target/
+==================================================================================
+9. Matrix Block Sum
+
+Given a m x n matrix mat and an integer k, return a matrix answer where each answer[i][j] is the sum of all elements mat[r][c] for:
+
+i - k <= r <= i + k,
+j - k <= c <= j + k, and
+(r, c) is a valid position in the matrix.
+
+Example 1:
+
+Input: mat = [[1,2,3],[4,5,6],[7,8,9]], k = 1
+Output: [[12,21,16],[27,45,33],[24,39,28]]
+
+Example 2:
+
+Input: mat = [[1,2,3],[4,5,6],[7,8,9]], k = 2
+Output: [[45,45,45],[45,45,45],[45,45,45]]
+ 
+Constraints:
+
+m == mat.length
+n == mat[i].length
+1 <= m, n, k <= 100
+1 <= mat[i][j] <= 100
+==================================================================================
+10. The K Weakest Rows in a Matrix
+
+You are given an m x n binary matrix mat of 1's (representing soldiers) and 0's (representing civilians). The soldiers are positioned in front of the civilians. That is, all the 1's will appear to the left of all the 0's in each row.
+
+A row i is weaker than a row j if one of the following is true:
+
+The number of soldiers in row i is less than the number of soldiers in row j.
+Both rows have the same number of soldiers and i < j.
+Return the indices of the k weakest rows in the matrix ordered from weakest to strongest.
+
+Example 1:
+
+Input: mat = 
+[[1,1,0,0,0],
+ [1,1,1,1,0],
+ [1,0,0,0,0],
+ [1,1,0,0,0],
+ [1,1,1,1,1]], 
+k = 3
+Output: [2,0,3]
+Explanation: 
+The number of soldiers in each row is: 
+- Row 0: 2 
+- Row 1: 4 
+- Row 2: 1 
+- Row 3: 2 
+- Row 4: 5 
+The rows ordered from weakest to strongest are [2,0,3,1,4].
+Example 2:
+
+Input: mat = 
+[[1,0,0,0],
+ [1,1,1,1],
+ [1,0,0,0],
+ [1,0,0,0]], 
+k = 2
+Output: [0,2]
+Explanation: 
+The number of soldiers in each row is: 
+- Row 0: 1 
+- Row 1: 4 
+- Row 2: 1 
+- Row 3: 1 
+The rows ordered from weakest to strongest are [0,2,3,1].
+ 
+
+Constraints:
+
+m == mat.length
+n == mat[i].length
+2 <= n, m <= 100
+1 <= k <= m
+matrix[i][j] is either 0 or 1.
+
+https://leetcode.com/problems/the-k-weakest-rows-in-a-matrix/
+==================================================================================
+11. Spiral Matrix II
+
+Given a positive integer n, generate an n x n matrix filled with elements from 1 to n^2 in spiral order.
+
+Example 1:
+
+[[1,2,3],
+ [8,9,4],
+ [7,6,5]]
+
+Input: n = 3
+Output: [[1,2,3],[8,9,4],[7,6,5]]
+
+Example 2:
+
+Input: n = 1
+Output: [[1]]
+ 
+Constraints:
+
+1 <= n <= 20
+
+https://leetcode.com/problems/spiral-matrix-ii/
+==================================================================================
+12. Number of Islands
+
+Given an m x n 2D binary grid grid which represents a map of '1's (land) and '0's (water), return the number of islands.
+
+An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
+
+Example 1:
+
+Input: grid = [
+  ["1","1","1","1","0"],
+  ["1","1","0","1","0"],
+  ["1","1","0","0","0"],
+  ["0","0","0","0","0"]
+]
+Output: 1
+
+Example 2:
+
+Input: grid = [
+  ["1","1","0","0","0"],
+  ["1","1","0","0","0"],
+  ["0","0","1","0","0"],
+  ["0","0","0","1","1"]
+]
+Output: 3
+
+Constraints:
+
+m == grid.length
+n == grid[i].length
+1 <= m, n <= 300
+grid[i][j] is '0' or '1'.
+
+https://leetcode.com/problems/number-of-islands/
+==================================================================================
+13. Maximum Number of Points with Cost
+
+You are given an m x n integer matrix points (0-indexed). Starting with 0 points, you want to maximize the number of points you can get from the matrix.
+
+To gain points, you must pick one cell in each row. Picking the cell at coordinates (r, c) will add points[r][c] to your score.
+
+However, you will lose points if you pick a cell too far from the cell that you picked in the previous row. For every two adjacent rows r and r + 1 (where 0 <= r < m - 1), picking cells at coordinates (r, c1) and (r + 1, c2) will subtract abs(c1 - c2) from your score.
+
+Return the maximum number of points you can achieve.
+
+abs(x) is defined as:
+
+x for x >= 0.
+-x for x < 0.
+
+Example 1:
+
+Input: points = [[1,2,3],[1,5,1],[3,1,1]]
+Output: 9
+Explanation:
+The blue cells denote the optimal cells to pick, which have coordinates (0, 2), (1, 1), and (2, 0).
+You add 3 + 5 + 3 = 11 to your score.
+However, you must subtract abs(2 - 1) + abs(1 - 0) = 2 from your score.
+Your final score is 11 - 2 = 9.
+
+Example 2:
+
+Input: points = [[1,5],[2,3],[4,2]]
+Output: 11
+Explanation:
+The blue cells denote the optimal cells to pick, which have coordinates (0, 1), (1, 1), and (2, 0).
+You add 5 + 3 + 4 = 12 to your score.
+However, you must subtract abs(1 - 1) + abs(1 - 0) = 1 from your score.
+Your final score is 12 - 1 = 11.
+ 
+
+Constraints:
+
+m == points.length
+n == points[r].length
+1 <= m, n <= 10^5
+1 <= m * n <= 10^5
+0 <= points[r][c] <= 10^5
+
+https://leetcode.com/problems/maximum-number-of-points-with-cost/
+==================================================================================
+14. Game of Life
+
+According to Wikipedia's article: "The Game of Life, also known simply as Life, is a cellular automaton devised by the British mathematician John Horton Conway in 1970."
+
+The board is made up of an m x n grid of cells, where each cell has an initial state: live (represented by a 1) or dead (represented by a 0). Each cell interacts with its eight neighbors (horizontal, vertical, diagonal) using the following four rules (taken from the above Wikipedia article):
+
+a. Any live cell with fewer than two live neighbors dies as if caused by under-population.
+b. Any live cell with two or three live neighbors lives on to the next generation.
+c. Any live cell with more than three live neighbors dies, as if by over-population.
+d. Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
+
+The next state is created by applying the above rules simultaneously to every cell in the current state, where births and deaths occur simultaneously. Given the current state of the m x n grid board, return the next state.
+
+Example 1:
+
+Input: board = [[0,1,0],[0,0,1],[1,1,1],[0,0,0]]
+Output: [[0,0,0],[1,0,1],[0,1,1],[0,1,0]]
+
+Example 2:
+
+Input: board = [[1,1],[1,0]]
+Output: [[1,1],[1,1]]
+
+Constraints:
+
+m == board.length
+n == board[i].length
+1 <= m, n <= 25
+board[i][j] is 0 or 1.
+ 
+
+Follow up:
+
+Could you solve it in-place? Remember that the board needs to be updated simultaneously: You cannot update some cells first and then use their updated values to update other cells.
+In this question, we represent the board using a 2D array. In principle, the board is infinite, which would cause problems when the active area encroaches upon the border of the array (i.e., live cells reach the border). How would you address these problems?
+
+https://leetcode.com/problems/game-of-life/
+==================================================================================
+15. Toeplitz Matrix
+
+Given an m x n matrix, return true if the matrix is Toeplitz. Otherwise, return false.
+
+A matrix is Toeplitz if every diagonal from top-left to bottom-right has the same elements.
+
+Example 1:
+
+Input: matrix = [[1,2,3,4],[5,1,2,3],[9,5,1,2]]
+Output: true
+Explanation:
+In the above grid, the diagonals are:
+"[9]", "[5, 5]", "[1, 1, 1]", "[2, 2, 2]", "[3, 3]", "[4]".
+In each diagonal all elements are the same, so the answer is True.
+Example 2:
+
+Input: matrix = [[1,2],[2,2]]
+Output: false
+Explanation:
+The diagonal "[1, 2]" has different elements.
+ 
+Constraints:
+
+m == matrix.length
+n == matrix[i].length
+1 <= m, n <= 20
+0 <= matrix[i][j] <= 99
+
+Follow up:
+
+What if the matrix is stored on disk, and the memory is limited such that you can only load at most one row of the matrix into the memory at once?
+What if the matrix is so large that you can only load up a partial row into the memory at once?
+
+https://leetcode.com/problems/toeplitz-matrix/
+==================================================================================
+16. Matrix Diagonal Sum
+
+Given a square matrix mat, return the sum of the matrix diagonals.
+
+Only include the sum of all the elements on the primary diagonal and all the elements on the secondary diagonal that are not part of the primary diagonal.
+
+Example 1:
+
+Input: mat = [[1,2,3],
+              [4,5,6],
+              [7,8,9]]
+Output: 25
+Explanation: Diagonals sum: 1 + 5 + 9 + 3 + 7 = 25
+Notice that element mat[1][1] = 5 is counted only once.
+Note: 
+[1,5,9] --> Primary Diagonal
+[3,5,9] --> Secondary Diagonal
+Example 2:
+
+Input: mat = [[1,1,1,1],
+              [1,1,1,1],
+              [1,1,1,1],
+              [1,1,1,1]]
+Output: 8
+
+Example 3:
+
+Input: mat = [[5]]
+Output: 5
+
+Constraints:
+
+n == mat.length == mat[i].length
+1 <= n <= 100
+1 <= mat[i][j] <= 100
+
+https://leetcode.com/problems/matrix-diagonal-sum/
+==================================================================================
+17. Count Negative Numbers in a Sorted Matrix
+
+Given a m x n matrix grid which is sorted in non-increasing order both row-wise and column-wise, return the number of negative numbers in grid.
+
+Example 1:
+
+Input: grid = [[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]]
+Output: 8
+Explanation: There are 8 negatives number in the matrix.
+Example 2:
+
+Input: grid = [[3,2],[1,0]]
+Output: 0
+
+Constraints:
+
+m == grid.length
+n == grid[i].length
+1 <= m, n <= 100
+-100 <= grid[i][j] <= 100
+
+https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/
+==================================================================================
+18. Rotate Image
+
+You are given an n x n 2D matrix representing an image, rotate the image by 90 degrees (clockwise).
+
+You have to rotate the image in-place, which means you have to modify the input 2D matrix directly. DO NOT allocate another 2D matrix and do the rotation.
+
+Example 1:
+
+Input: matrix = [[1,2,3],[4,5,6],[7,8,9]]
+Output: [[7,4,1],[8,5,2],[9,6,3]]
+
+Example 2:
+
+Input: matrix = [[5,1,9,11],[2,4,8,10],[13,3,6,7],[15,14,12,16]]
+Output: [[15,13,2,5],[14,3,4,1],[12,6,8,9],[16,7,10,11]]
+
+Constraints:
+
+n == matrix.length == matrix[i].length
+1 <= n <= 20
+-1000 <= matrix[i][j] <= 1000
+
+https://leetcode.com/problems/rotate-image/
+==================================================================================
+19. Transpose Matrix
+
+Given a 2D integer array matrix, return the transpose of matrix.
+
+The transpose of a matrix is the matrix flipped over its main diagonal, switching the matrix's row and column indices.
+
+Example 1:
+
+Input: matrix = [[1,2,3],[4,5,6],[7,8,9]]
+Output: [[1,4,7],[2,5,8],[3,6,9]]
+Example 2:
+
+Input: matrix = [[1,2,3],[4,5,6]]
+Output: [[1,4],[2,5],[3,6]]
+
+Constraints:
+
+m == matrix.length
+n == matrix[i].length
+1 <= m, n <= 1000
+1 <= m * n <= 10^5
+-109 <= matrix[i][j] <= 10^9
+==================================================================================
+20. Reshape the Matrix
+
+In MATLAB, there is a handy function called reshape which can reshape an m x n matrix into a new one with a different size r x c keeping its original data.
+
+You are given an m x n matrix mat and two integers r and c representing the number of rows and the number of columns of the wanted reshaped matrix.
+
+The reshaped matrix should be filled with all the elements of the original matrix in the same row-traversing order as they were.
+
+If the reshape operation with given parameters is possible and legal, output the new reshaped matrix; Otherwise, output the original matrix.
+
+Example 1:
+
+Input: mat = [[1,2],[3,4]], r = 1, c = 4
+Output: [[1,2,3,4]]
+
+Example 2:
+
+Input: mat = [[1,2],[3,4]], r = 2, c = 4
+Output: [[1,2],[3,4]]
+
+Constraints:
+
+m == mat.length
+n == mat[i].length
+1 <= m, n <= 100
+-1000 <= mat[i][j] <= 1000
+1 <= r, c <= 300
+==================================================================================
+21. Flipping an Image
+
+Given an n x n binary matrix image, flip the image horizontally, then invert it, and return the resulting image.
+
+To flip an image horizontally means that each row of the image is reversed.
+
+For example, flipping [1,1,0] horizontally results in [0,1,1].
+To invert an image means that each 0 is replaced by 1, and each 1 is replaced by 0.
+
+For example, inverting [0,1,1] results in [1,0,0].
+ 
+Example 1:
+
+Input: image = [[1,1,0],[1,0,1],[0,0,0]]
+Output: [[1,0,0],[0,1,0],[1,1,1]]
+Explanation: First reverse each row: [[0,1,1],[1,0,1],[0,0,0]].
+Then, invert the image: [[1,0,0],[0,1,0],[1,1,1]]
+Example 2:
+
+Input: image = [[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]
+Output: [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]
+Explanation: First reverse each row: [[0,0,1,1],[1,0,0,1],[1,1,1,0],[0,1,0,1]].
+Then invert the image: [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]
+
+Constraints:
+
+n == image.length
+n == image[i].length
+1 <= n <= 20
+images[i][j] is either 0 or 1.
+==================================================================================
+22. Find Winner on a Tic Tac Toe Game
+
+Tic-tac-toe is played by two players A and B on a 3 x 3 grid. The rules of Tic-Tac-Toe are:
+
+Players take turns placing characters into empty squares ' '.
+The first player A always places 'X' characters, while the second player B always places 'O' characters.
+'X' and 'O' characters are always placed into empty squares, never on filled ones.
+The game ends when there are three of the same (non-empty) character filling any row, column, or diagonal.
+The game also ends if all squares are non-empty.
+No more moves can be played if the game is over.
+Given a 2D integer array moves where moves[i] = [rowi, coli] indicates that the ith move will be played on grid[rowi][coli]. return the winner of the game if it exists (A or B). In case the game ends in a draw return "Draw". If there are still movements to play return "Pending".
+
+You can assume that moves is valid (i.e., it follows the rules of Tic-Tac-Toe), the grid is initially empty, and A will play first.
+
+Example 1:
+
+[[X,-,-],
+ [-,X,-],
+ [O,O,X]]
+
+Input: moves = [[0,0],[2,0],[1,1],[2,1],[2,2]]
+Output: "A"
+Explanation: A wins, they always play first.
+
+Example 2:
+
+[[X,X,O],
+ [X,O,-],
+ [O,-,-]]
+
+Input: moves = [[0,0],[1,1],[0,1],[0,2],[1,0],[2,0]]
+Output: "B"
+Explanation: B wins.
+
+Example 3:
+
+[[X,X,O],
+ [O,O,X],
+ [X,O,X]]
+
+Input: moves = [[0,0],[1,1],[2,0],[1,0],[1,2],[2,1],[0,1],[0,2],[2,2]]
+Output: "Draw"
+Explanation: The game ends in a draw since there are no moves to make.
+
+Constraints:
+
+1 <= moves.length <= 9
+moves[i].length == 2
+0 <= rowi, coli <= 2
+There are no repeated elements on moves.
+moves follow the rules of tic tac toe.
+
+https://leetcode.com/problems/find-winner-on-a-tic-tac-toe-game/
+==================================================================================
+23. Kth Smallest Element in a Sorted Matrix
+
+Given an n x n matrix where each of the rows and columns is sorted in ascending order, return the kth smallest element in the matrix.
+
+Note that it is the kth smallest element in the sorted order, not the kth distinct element.
+
+You must find a solution with a memory complexity better than O(n2).
+
+Example 1:
+
+Input: matrix = [[1,5,9],[10,11,13],[12,13,15]], k = 8
+Output: 13
+Explanation: The elements in the matrix are [1,5,9,10,11,12,13,13,15], and the 8th smallest number is 13
+
+Example 2:
+
+Input: matrix = [[-5]], k = 1
+Output: -5
+
+Constraints:
+
+n == matrix.length == matrix[i].length
+1 <= n <= 300
+-109 <= matrix[i][j] <= 109
+All the rows and columns of matrix are guaranteed to be sorted in non-decreasing order.
+1 <= k <= n^2
+
+Follow up:
+
+Could you solve the problem with a constant memory (i.e., O(1) memory complexity)?
+Could you solve the problem in O(n) time complexity? The solution may be too advanced for an interview but you may find reading this paper fun.
+==================================================================================
+24. Max Increase to Keep City Skyline
+
+There is a city composed of n x n blocks, where each block contains a single building shaped like a vertical square prism. You are given a 0-indexed n x n integer matrix grid where grid[r][c] represents the height of the building located in the block at row r and column c.
+
+A city's skyline is the outer contour formed by all the building when viewing the side of the city from a distance. The skyline from each cardinal direction north, east, south, and west may be different.
+
+We are allowed to increase the height of any number of buildings by any amount (the amount can be different per building). The height of a 0-height building can also be increased. However, increasing the height of a building should not affect the city's skyline from any cardinal direction.
+
+Return the maximum total sum that the height of the buildings can be increased by without changing the city's skyline from any cardinal direction.
+
+Example 1:
+
+Input: grid = [[3,0,8,4],[2,4,5,7],[9,2,6,3],[0,3,1,0]]
+Output: 35
+Explanation: The building heights are shown in the center of the above image.
+The skylines when viewed from each cardinal direction are drawn in red.
+The grid after increasing the height of buildings without affecting skylines is:
+gridNew = [ [8, 4, 8, 7],
+            [7, 4, 7, 7],
+            [9, 4, 8, 7],
+            [3, 3, 3, 3] ]
+
+Example 2:
+
+Input: grid = [[0,0,0],[0,0,0],[0,0,0]]
+Output: 0
+Explanation: Increasing the height of any building will result in the skyline changing.
+
+Constraints:
+
+n == grid.length
+n == grid[r].length
+2 <= n <= 50
+0 <= grid[r][c] <= 100
+
+https://leetcode.com/problems/max-increase-to-keep-city-skyline/
+==================================================================================
+25. Check if Every Row and Column Contains All Numbers
+
+An n x n matrix is valid if every row and every column contains all the integers from 1 to n (inclusive).
+
+Given an n x n integer matrix matrix, return true if the matrix is valid. Otherwise, return false.
+
+Example 1:
+
+Input: matrix = [[1,2,3],[3,1,2],[2,3,1]]
+Output: true
+Explanation: In this case, n = 3, and every row and column contains the numbers 1, 2, and 3.
+Hence, we return true.
+
+Example 2:
+
+Input: matrix = [[1,1,1],[1,2,3],[1,2,3]]
+Output: false
+Explanation: In this case, n = 3, but the first row and the first column do not contain the numbers 2 or 3.
+Hence, we return false.
+ 
+
+Constraints:
+
+n == matrix.length == matrix[i].length
+1 <= n <= 100
+1 <= matrix[i][j] <= n
+==================================================================================
+26. Number of Laser Beams in a Bank
+
+Anti-theft security devices are activated inside a bank. You are given a 0-indexed binary string array bank representing the floor plan of the bank, which is an m x n 2D matrix. bank[i] represents the ith row, consisting of '0's and '1's. '0' means the cell is empty, while'1' means the cell has a security device.
+
+There is one laser beam between any two security devices if both conditions are met:
+
+The two devices are located on two different rows: r1 and r2, where r1 < r2.
+For each row i where r1 < i < r2, there are no security devices in the ith row.
+Laser beams are independent, i.e., one beam does not interfere nor join with another.
+
+Return the total number of laser beams in the bank.
+
+Example 1:
+
+Input: bank = ["011001","000000","010100","001000"]
+Output: 8
+Explanation: Between each of the following device pairs, there is one beam. In total, there are 8 beams:
+ * bank[0][1] -- bank[2][1]
+ * bank[0][1] -- bank[2][3]
+ * bank[0][2] -- bank[2][1]
+ * bank[0][2] -- bank[2][3]
+ * bank[0][5] -- bank[2][1]
+ * bank[0][5] -- bank[2][3]
+ * bank[2][1] -- bank[3][2]
+ * bank[2][3] -- bank[3][2]
+Note that there is no beam between any device on the 0th row with any on the 3rd row.
+This is because the 2nd row contains security devices, which breaks the second condition.
+
+Example 2:
+
+Input: bank = ["000","111","000"]
+Output: 0
+Explanation: There does not exist two devices located on two different rows.
+
+Constraints:
+
+m == bank.length
+n == bank[i].length
+1 <= m, n <= 500
+bank[i][j] is either '0' or '1'.
+
+https://leetcode.com/problems/number-of-laser-beams-in-a-bank/
+==================================================================================
+27. Special Positions in a Binary Matrix
+
+Given an m x n binary matrix mat, return the number of special positions in mat.
+
+A position (i, j) is called special if mat[i][j] == 1 and all other elements in row i and column j are 0 (rows and columns are 0-indexed).
+
+Example 1:
+
+Input: mat = [[1,0,0],[0,0,1],[1,0,0]]
+Output: 1
+Explanation: (1, 2) is a special position because mat[1][2] == 1 and all other elements in row 1 and column 2 are 0.
+
+Example 2:
+
+Input: mat = [[1,0,0],[0,1,0],[0,0,1]]
+Output: 3
+Explanation: (0, 0), (1, 1) and (2, 2) are special positions.
+
+Constraints:
+
+m == mat.length
+n == mat[i].length
+1 <= m, n <= 100
+mat[i][j] is either 0 or 1.
+==================================================================================
+28. Search a 2D Matrix
+
+You are given an m x n integer matrix matrix with the following two properties:
+
+Each row is sorted in non-decreasing order.
+The first integer of each row is greater than the last integer of the previous row.
+Given an integer target, return true if target is in matrix or false otherwise.
+
+You must write a solution in O(log(m * n)) time complexity.
+
+Example 1:
+
+Input: matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]], target = 3
+Output: true
+
+Example 2:
+
+Input: matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]], target = 13
+Output: false
+
+Constraints:
+
+m == matrix.length
+n == matrix[i].length
+1 <= m, n <= 100
+-10^4 <= matrix[i][j], target <= 10^4
+==================================================================================
+29. Number of Provinces
+
+There are n cities. Some of them are connected, while some are not. If city a is connected directly with city b, and city b is connected directly with city c, then city a is connected indirectly with city c.
+
+A province is a group of directly or indirectly connected cities and no other cities outside of the group.
+
+You are given an n x n matrix isConnected where isConnected[i][j] = 1 if the ith city and the jth city are directly connected, and isConnected[i][j] = 0 otherwise.
+
+Return the total number of provinces.
+
+Example 1:
+
+Input: isConnected = [[1,1,0],[1,1,0],[0,0,1]]
+Output: 2
+
+Example 2:
+
+Input: isConnected = [[1,0,0],[0,1,0],[0,0,1]]
+Output: 3
+ 
+Constraints:
+
+1 <= n <= 200
+n == isConnected.length
+n == isConnected[i].length
+isConnected[i][j] is 1 or 0.
+isConnected[i][i] == 1
+isConnected[i][j] == isConnected[j][i]
+
+https://leetcode.com/problems/number-of-provinces/
+==================================================================================
+30. Find Minimum in Rotated Sorted Array II
+
+Suppose an array of length n sorted in ascending order is rotated between 1 and n times. For example, the array nums = [0,1,4,4,5,6,7] might become:
+
+[4,5,6,7,0,1,4] if it was rotated 4 times.
+[0,1,4,4,5,6,7] if it was rotated 7 times.
+Notice that rotating an array [a[0], a[1], a[2], ..., a[n-1]] 1 time results in the array [a[n-1], a[0], a[1], a[2], ..., a[n-2]].
+
+Given the sorted rotated array nums that may contain duplicates, return the minimum element of this array.
+
+You must decrease the overall operation steps as much as possible.
+
+Example 1:
+
+Input: nums = [1,3,5]
+Output: 1
+
+Example 2:
+
+Input: nums = [2,2,2,0,1]
+Output: 0
+
+Constraints:
+
+n == nums.length
+1 <= n <= 5000
+-5000 <= nums[i] <= 5000
+nums is sorted and rotated between 1 and n times.
+
+Follow up: This problem is similar to Find Minimum in Rotated Sorted Array, but nums may contain duplicates. Would this affect the runtime complexity? How and why?
+
+https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/
+==================================================================================
+
+==================================================================================

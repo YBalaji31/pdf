@@ -1,0 +1,21 @@
+Store the following code in RegIndex.html
+
+<html>  
+<body>  
+<form action="./javaregister" method="post">  
+<h4 style="color:blue">Registeration Form</h4>
+<br/>
+Name:<input type="text" name="userName"/><br/><br/>  
+Password:<input type="password" name="userPass"/><br/><br/>  
+Email Id:<input type="text" name="userEmail"/><br/><br/>  
+Country:  
+<select name="userCountry">  
+<option>India</option>  
+<option>Pakistan</option>  
+<option>Others</option>  
+</select>  
+<br/><br/>  
+<input type="submit" value="submit"/>  
+</form>  
+</body>  
+</html>  
